@@ -1,7 +1,7 @@
 import Image from "next/image"
-import { ArrowRight, Search } from "lucide-react"
+import { ArrowRight, LogIn, Search } from "lucide-react"
 import { QualitySeal } from "@/components/quality-seal"
-import { REGISTER_URL } from "@/lib/site"
+import { LOGIN_URL, REGISTER_URL } from "@/lib/site"
 
 export function Hero() {
   return (
@@ -26,6 +26,15 @@ export function Hero() {
           >
             Зарегистрироваться
             <ArrowRight className="size-4" aria-hidden="true" />
+          </a>
+          <a
+            href={LOGIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 font-medium transition-colors hover:bg-muted"
+          >
+            <LogIn className="size-4" aria-hidden="true" />
+            Логин
           </a>
           <a
             href="#reestr"

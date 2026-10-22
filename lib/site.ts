@@ -1,5 +1,6 @@
 export const APP_URL = "https://snt-portal.vercel.app"
-export const REGISTER_URL = APP_URL
+export const REGISTER_URL = `${APP_URL}/register`
+export const LOGIN_URL = `${APP_URL}/login`
 
 export const REGIONS: { code: string; name: string }[] = [
   ["77", "Москва"],

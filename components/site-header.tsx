@@ -1,5 +1,5 @@
 import { Sprout } from "lucide-react"
-import { REGISTER_URL } from "@/lib/site"
+import { LOGIN_URL, REGISTER_URL } from "@/lib/site"
 
 const NAV = [
   { href: "#o-prilozhenii", label: "О приложении" },
@@ -24,14 +24,25 @@ export function SiteHeader() {
             </a>
           ))}
         </nav>
-        <a
-          href={REGISTER_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
-        >
-          Зарегистрироваться
-        </a>
+        <div className="flex items-center gap-2">
+          <a
+            href={LOGIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium transition-colors hover:bg-muted sm:px-4"
+          >
+            Логин
+          </a>
+          <a
+            href={REGISTER_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-lg bg-primary px-3 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 sm:px-4"
+          >
+            <span className="sm:hidden">Регистрация</span>
+            <span className="hidden sm:inline">Зарегистрироваться</span>
+          </a>
+        </div>
       </div>
     </header>
   )

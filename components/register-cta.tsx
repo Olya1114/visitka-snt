@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react"
 import { QualitySeal } from "@/components/quality-seal"
-import { APP_URL, REGISTER_URL } from "@/lib/site"
+import { APP_URL, LOGIN_URL, REGISTER_URL } from "@/lib/site"
 
 export function RegisterCta() {
   return (
@@ -24,6 +24,17 @@ export function RegisterCta() {
               Зарегистрироваться в СНТ Портале
               <ArrowRight className="size-4" aria-hidden="true" />
             </a>
+            <p className="text-sm opacity-85">
+              Уже зарегистрированы?{" "}
+              <a
+                href={LOGIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium underline underline-offset-4 hover:opacity-80"
+              >
+                Логин
+              </a>
+            </p>
           </div>
           <QualitySeal animated={false} className="size-40 shrink-0 rounded-full bg-background p-1 md:size-48" />
         </div>
