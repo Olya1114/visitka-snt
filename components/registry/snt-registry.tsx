@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, type FormEvent } from "react"
+import { useEffect, useState, type FormEvent } from "react"
+import { SNT_SEARCH_EVENT } from "@/components/hero-search"
 import useSWR from "swr"
 import { Loader2, Search } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -50,6 +51,20 @@ export function SntRegistry() {
     revalidateOnFocus: false,
     shouldRetryOnError: false,
   })
+
+  useEffect(() => {
+    function onHeroSearch(e: Event) {
+      const q = (e as CustomEvent<string>).detail
+      const nextMode: Mode = /^\d{10}(\d{3})?$/.test(q) ? "code" : "name"
+      setMode(nextMode)
+      setQuery(q)
+      setRegion("")
+      setSelected(null)
+      setSubmitted(`/api/snt/search?${new URLSearchParams({ mode: nextMode, q })}`)
+    }
+    window.addEventListener(SNT_SEARCH_EVENT, onHeroSearch)
+    return () => window.removeEventListener(SNT_SEARCH_EVENT, onHeroSearch)
+  }, [])
 
   const current = MODES.find((m) => m.id === mode)!
 

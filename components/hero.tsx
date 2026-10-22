@@ -1,11 +1,13 @@
 import Image from "next/image"
-import { ArrowRight, LogIn, Search } from "lucide-react"
+import { ArrowRight, LogIn } from "lucide-react"
 import { QualitySeal } from "@/components/quality-seal"
+import { HeroSearch } from "@/components/hero-search"
 import { LOGIN_URL, REGISTER_URL } from "@/lib/site"
 
 export function Hero() {
   return (
-    <section className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-16 pt-12 md:grid-cols-2 md:px-6 md:pb-24 md:pt-20">
+    <section className="mx-auto flex max-w-6xl flex-col gap-20 px-4 pb-16 pt-12 md:px-6 md:pb-24 md:pt-20">
+      <div className="grid items-center gap-10 md:grid-cols-2">
       <div className="flex flex-col gap-6">
         <p className="font-mono text-xs uppercase tracking-widest text-primary">
           Приложение для садовых товариществ
@@ -36,13 +38,6 @@ export function Hero() {
             <LogIn className="size-4" aria-hidden="true" />
             Логин
           </a>
-          <a
-            href="#reestr"
-            className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 font-medium transition-colors hover:bg-muted"
-          >
-            <Search className="size-4" aria-hidden="true" />
-            Найти своё СНТ
-          </a>
         </div>
       </div>
 
@@ -59,6 +54,9 @@ export function Hero() {
         </div>
         <QualitySeal className="absolute -bottom-10 -left-6 size-36 rounded-full bg-background/85 p-1 md:-left-12 md:size-44" />
       </div>
+      </div>
+
+      <HeroSearch />
     </section>
   )
 }
