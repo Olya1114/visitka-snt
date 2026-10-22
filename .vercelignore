@@ -1,0 +1,4 @@
+.next-build
+.next
+node_modules
+.env*.local
