@@ -129,7 +129,7 @@ export function AboutApp() {
             <ServerCog className="size-6" aria-hidden="true" />
           </span>
           <p className="text-pretty leading-relaxed">
-            <span className="font-semibold">Обычные надёжные технологии, без блокчейна.</span> Данные хранятся на
+            <span className="font-semibold">Обычные надёжные технологии.</span> Данные хранятся на
             стандартных серверах внутри России, поэтому отключить что-либо извне невозможно.
           </p>
         </div>
