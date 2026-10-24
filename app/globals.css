@@ -37,7 +37,7 @@
 
 :root {
   color-scheme: light;
-  /* garden: soft leaf-paper background, deep foliage green; stamp = muted clay for Alice */
+  /* garden: soft leaf-paper background, deep foliage green; stamp = neutral grey-green for Alice */
   --background: oklch(0.972 0.008 118);
   --foreground: oklch(0.22 0.025 150);
   --card: oklch(0.99 0.004 118);
@@ -52,7 +52,7 @@
   --muted-foreground: oklch(0.46 0.02 150);
   --accent: oklch(0.925 0.02 130);
   --accent-foreground: oklch(0.22 0.025 150);
-  --stamp: oklch(0.52 0.075 55);
+  --stamp: oklch(0.44 0.022 145);
   --stamp-foreground: oklch(0.98 0.006 118);
   --destructive: oklch(0.55 0.2 27);
   --border: oklch(0.88 0.014 125);
