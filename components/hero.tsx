@@ -1,6 +1,5 @@
 import { ArrowRight } from "lucide-react"
 import { ParallaxImage } from "@/components/parallax-image"
-import { QualitySeal } from "@/components/quality-seal"
 
 export function Hero() {
   return (
@@ -33,10 +32,6 @@ export function Hero() {
               .
             </p>
           </div>
-          <QualitySeal
-            animated={false}
-            className="absolute -right-6 -top-10 hidden size-32 rounded-full bg-card/90 p-1 shadow-lg md:block lg:-right-16"
-          />
         </div>
       </div>
     </section>
