@@ -55,7 +55,7 @@ export function SiteFooter() {
           <div className="flex flex-col gap-3">
             <span className="flex items-center gap-2 text-base font-semibold">
               <Sprout className="size-5" aria-hidden="true" />
-              СНТ Портал
+              СНТ Онлайн
             </span>
             {legalRows.length > 0 && (
               <dl className="flex flex-col gap-1 opacity-70">
@@ -67,7 +67,7 @@ export function SiteFooter() {
                 ))}
               </dl>
             )}
-            <p className="opacity-60">{"© СНТ Портал. Данные о товариществах — из открытых государственных источников."}</p>
+            <p className="opacity-60">{"© СНТ Онлайн. Данные о товариществах — из открытых государственных источников."}</p>
           </div>
           <a href="/privacy" className="underline underline-offset-4 opacity-80 hover:opacity-100">
             Политика обработки персональных данных
