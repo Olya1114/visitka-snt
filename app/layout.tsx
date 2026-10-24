@@ -1,10 +1,14 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Onest, JetBrains_Mono } from 'next/font/google'
+import { Alegreya, Alegreya_Sans } from 'next/font/google'
 import './globals.css'
 
-const onest = Onest({ subsets: ['latin', 'cyrillic'], variable: '--font-onest' })
-const mono = JetBrains_Mono({ subsets: ['latin', 'cyrillic'], variable: '--font-jb-mono' })
+const display = Alegreya({ subsets: ['latin', 'cyrillic'], variable: '--font-alegreya' })
+const body = Alegreya_Sans({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['400', '500', '700'],
+  variable: '--font-alegreya-sans',
+})
 
 export const metadata: Metadata = {
   title: 'СНТ Портал — документы, решения и общение садоводства',
@@ -32,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ru" className={`${onest.variable} ${mono.variable} bg-background`}>
+    <html lang="ru" className={`${display.variable} ${body.variable} bg-background`}>
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
