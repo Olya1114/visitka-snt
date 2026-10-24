@@ -1,7 +1,6 @@
 "use client"
 
-import { useEffect, useState, type FormEvent } from "react"
-import { SNT_SEARCH_EVENT } from "@/components/hero-search"
+import { useState, type FormEvent } from "react"
 import useSWR from "swr"
 import { Loader2, Search } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -52,20 +51,6 @@ export function SntRegistry() {
     shouldRetryOnError: false,
   })
 
-  useEffect(() => {
-    function onHeroSearch(e: Event) {
-      const q = (e as CustomEvent<string>).detail
-      const nextMode: Mode = /^\d{10}(\d{3})?$/.test(q) ? "code" : "name"
-      setMode(nextMode)
-      setQuery(q)
-      setRegion("")
-      setSelected(null)
-      setSubmitted(`/api/snt/search?${new URLSearchParams({ mode: nextMode, q })}`)
-    }
-    window.addEventListener(SNT_SEARCH_EVENT, onHeroSearch)
-    return () => window.removeEventListener(SNT_SEARCH_EVENT, onHeroSearch)
-  }, [])
-
   const current = MODES.find((m) => m.id === mode)!
 
   function onSubmit(e: FormEvent) {
@@ -79,7 +64,7 @@ export function SntRegistry() {
   const results = data?.results ?? []
 
   return (
-    <section id="reestr" className="scroll-mt-20 bg-secondary/60">
+    <section id="reestr" className="scroll-mt-24 bg-secondary/60">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-16 md:px-6 md:py-24">
         <div className="flex max-w-2xl flex-col gap-4">
           <p className="font-mono text-xs uppercase tracking-widest text-primary">Реестр садоводств</p>

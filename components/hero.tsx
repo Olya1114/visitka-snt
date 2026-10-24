@@ -1,62 +1,44 @@
-import Image from "next/image"
-import { ArrowRight, LogIn } from "lucide-react"
+import { ArrowRight } from "lucide-react"
+import { ParallaxImage } from "@/components/parallax-image"
 import { QualitySeal } from "@/components/quality-seal"
-import { HeroSearch } from "@/components/hero-search"
-import { LOGIN_URL, REGISTER_URL } from "@/lib/site"
 
 export function Hero() {
   return (
-    <section className="mx-auto flex max-w-6xl flex-col gap-20 px-4 pb-16 pt-12 md:px-6 md:pb-24 md:pt-20">
-      <div className="grid items-center gap-10 md:grid-cols-2">
-      <div className="flex flex-col gap-6">
-        <p className="font-mono text-xs uppercase tracking-widest text-primary">
-          Приложение для садовых товариществ
-        </p>
-        <h1 className="text-balance text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-          Документы, решения и разговоры садоводства — в одном месте
-        </h1>
-        <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
-          СНТ Портал хранит протоколы и отчёты товарищества так, что их нельзя потерять или тихо удалить. Председатель
-          видит каждое действие, садоводы — каждое решение, а Алиса помогает собрать отчёт голосом.
-        </p>
-        <div className="flex flex-wrap gap-3">
-          <a
-            href={REGISTER_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 font-medium text-primary-foreground transition-opacity hover:opacity-90"
-          >
-            Зарегистрироваться
-            <ArrowRight className="size-4" aria-hidden="true" />
-          </a>
-          <a
-            href={LOGIN_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-5 py-3 font-medium transition-colors hover:bg-muted"
-          >
-            <LogIn className="size-4" aria-hidden="true" />
-            Логин
-          </a>
-        </div>
-      </div>
+    <section className="relative isolate flex min-h-svh items-end overflow-hidden px-3 pb-3 pt-24 md:items-center md:px-6 md:pb-16">
+      <ParallaxImage src="/images/hero-garden.png" alt="Утро на дачном участке: деревянный стол, грядки и теплица" />
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-foreground/55 via-foreground/10 to-transparent" />
 
-      <div className="relative">
-        <div className="overflow-hidden rounded-2xl border border-border">
-          <Image
-            src="/images/snt-aerial.png"
-            alt="Садовое товарищество с высоты: участки, домики и теплицы"
-            width={1200}
-            height={900}
-            priority
-            className="aspect-[4/3] w-full object-cover"
+      <div className="relative mx-auto w-full max-w-6xl">
+        <div className="glass relative flex max-w-xl flex-col gap-5 rounded-3xl p-6 md:p-10">
+          <p className="font-mono text-xs uppercase tracking-widest text-primary">
+            Приложение для садовых товариществ
+          </p>
+          <h1 className="text-balance text-3xl font-semibold leading-tight tracking-tight md:text-5xl">
+            Документы, решения и разговоры садоводства — в одном месте
+          </h1>
+          <p className="text-pretty leading-relaxed text-foreground/75 md:text-lg">
+            СНТ Портал хранит протоколы и отчёты товарищества так, что их нельзя потерять или тихо удалить. Председатель
+            видит каждое действие, садоводы — каждое решение, а Алиса помогает собрать отчёт голосом.
+          </p>
+          <div className="flex flex-col gap-3">
+            <button type="button" className="cta-button w-full sm:w-fit">
+              Присоединиться
+              <ArrowRight className="size-5" aria-hidden="true" />
+            </button>
+            <p className="text-xs leading-relaxed text-foreground/60">
+              {"Нажимая «Присоединиться», вы соглашаетесь с "}
+              <a href="/privacy" className="underline underline-offset-2 hover:text-foreground">
+                политикой обработки персональных данных
+              </a>
+              .
+            </p>
+          </div>
+          <QualitySeal
+            animated={false}
+            className="absolute -right-6 -top-10 hidden size-32 rounded-full bg-card/90 p-1 shadow-lg md:block lg:-right-16"
           />
         </div>
-        <QualitySeal className="absolute -bottom-10 -left-6 size-36 rounded-full bg-background/85 p-1 md:-left-12 md:size-44" />
       </div>
-      </div>
-
-      <HeroSearch />
     </section>
   )
 }

@@ -69,6 +69,62 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* faint paper grain for a crafted, non-glossy feel */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.2 0 0 0 0 0.25 0 0 0 0 0.15 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@layer components {
+  .glass {
+    background: color-mix(in oklch, var(--card) 68%, transparent);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border: 1px solid color-mix(in oklch, var(--card) 70%, transparent);
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklch, var(--card) 90%, transparent),
+      0 12px 40px -12px color-mix(in oklch, var(--foreground) 30%, transparent);
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 1rem;
+    padding: 1rem 1.75rem;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    box-shadow: 0 6px 18px -6px color-mix(in oklch, var(--primary) 60%, transparent);
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+  }
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px -10px color-mix(in oklch, var(--primary) 75%, transparent);
+  }
+  .cta-button:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+
+  .bento-tile {
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+  }
+  .bento-tile:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px -20px color-mix(in oklch, var(--foreground) 35%, transparent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-button:hover,
+    .bento-tile:hover {
+      transform: none;
+    }
   }
 }
 

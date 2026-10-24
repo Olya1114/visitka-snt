@@ -2,6 +2,10 @@ export const APP_URL = "https://snt-portal.vercel.app"
 export const REGISTER_URL = `${APP_URL}/register`
 export const LOGIN_URL = `${APP_URL}/login`
 
+// Empty values render as "скоро" / are hidden until the owner provides them.
+export const CONTACTS = { telegram: "", max: "", vk: "", email: "" }
+export const LEGAL = { owner: "", inn: "", ogrn: "", address: "" }
+
 export const REGIONS: { code: string; name: string }[] = [
   ["77", "Москва"],
   ["50", "Московская область"],
