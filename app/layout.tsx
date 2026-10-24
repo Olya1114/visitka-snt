@@ -1,13 +1,12 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Alegreya, Alegreya_Sans } from 'next/font/google'
+import { Manrope } from 'next/font/google'
 import './globals.css'
 
-const display = Alegreya({ subsets: ['latin', 'cyrillic'], variable: '--font-alegreya' })
-const body = Alegreya_Sans({
+const manrope = Manrope({
   subsets: ['latin', 'cyrillic'],
-  weight: ['400', '500', '700'],
-  variable: '--font-alegreya-sans',
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-manrope',
 })
 
 export const metadata: Metadata = {
@@ -36,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ru" className={`${display.variable} ${body.variable} bg-background`}>
+    <html lang="ru" className={`${manrope.variable} bg-background`}>
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

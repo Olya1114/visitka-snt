@@ -5,9 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: var(--font-alegreya-sans), 'Alegreya Sans', system-ui, sans-serif;
-  --font-serif: var(--font-alegreya), 'Alegreya', Georgia, serif;
-  --font-mono: var(--font-alegreya-sans), 'Alegreya Sans', system-ui, sans-serif;
+  --font-sans: var(--font-manrope), 'Manrope', system-ui, sans-serif;
+  --font-serif: var(--font-manrope), 'Manrope', system-ui, sans-serif;
+  --font-mono: var(--font-manrope), 'Manrope', system-ui, sans-serif;
   --color-stamp: var(--stamp);
   --color-stamp-foreground: var(--stamp-foreground);
   --color-ring: var(--ring);
