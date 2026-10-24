@@ -116,7 +116,7 @@ const TILES: Tile[] = [
 
 const TONES = {
   primary: "bg-primary text-primary-foreground",
-  stamp: "bg-stamp text-stamp-foreground",
+  stamp: "bg-primary text-primary-foreground",
   card: "bg-card text-card-foreground border border-border",
 } as const
 
