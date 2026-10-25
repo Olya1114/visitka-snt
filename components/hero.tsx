@@ -4,7 +4,7 @@ import { ParallaxImage } from "@/components/parallax-image"
 export function Hero() {
   return (
     <section className="relative isolate flex min-h-svh items-end overflow-hidden px-3 pb-3 pt-24 md:items-center md:px-6 md:pb-16">
-      <ParallaxImage src="/images/hero-garden.png" alt="Утро на дачном участке: деревянный стол, грядки и теплица" />
+      <ParallaxImage src="/images/snt-aerial.png" alt="Садовое товарищество с высоты: участки, домики и дорога среди леса" />
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-foreground/55 via-foreground/10 to-transparent" />
 
       <div className="relative mx-auto w-full max-w-6xl">
@@ -20,10 +20,10 @@ export function Hero() {
             видит каждое действие, садоводы — каждое решение, а Алиса помогает собрать отчёт голосом.
           </p>
           <div className="flex flex-col gap-3">
-            <button type="button" className="cta-button w-full sm:w-fit">
+            <a href="https://snt.online" className="cta-button w-full sm:w-fit">
               Присоединиться
               <ArrowRight className="size-5" aria-hidden="true" />
-            </button>
+            </a>
             <p className="text-xs leading-relaxed text-foreground/60">
               {"Нажимая «Присоединиться», вы соглашаетесь с "}
               <a href="/privacy" className="underline underline-offset-2 hover:text-foreground">
