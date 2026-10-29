@@ -1,35 +1,30 @@
 "use client"
 
 import { useState, type FormEvent } from "react"
-import useSWR from "swr"
-import { ArrowUpRight, Loader2, Search } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 import { REGIONS } from "@/lib/site"
 
-type YandexResult = { url: string; title: string; snippet: string; domain: string }
-
-const fetcher = async (url: string) => {
-  const res = await fetch(url)
-  const json = await res.json()
-  if (!res.ok) throw new Error(json.error ?? "Ошибка поиска")
-  return json as { results: YandexResult[] }
+function yandexSearchUrl(inn: string, regionName: string) {
+  const text = `СНТ ИНН ${inn} ${regionName}`
+  return `https://yandex.ru/search/?${new URLSearchParams({ text })}`
 }
 
 export function SntRegistry() {
   const [inn, setInn] = useState("")
   const [region, setRegion] = useState("")
-  const [submitted, setSubmitted] = useState<string | null>(null)
-
-  const { data, error, isLoading } = useSWR(submitted, fetcher, {
-    revalidateOnFocus: false,
-    shouldRetryOnError: false,
-  })
 
   function onSubmit(e: FormEvent) {
     e.preventDefault()
-    setSubmitted(`/api/snt/yandex?${new URLSearchParams({ inn, region })}`)
+    const regionName = REGIONS.find((r) => r.code === region)?.name
+    if (!regionName) return
+    const url = yandexSearchUrl(inn, regionName)
+    // Yandex refuses to render inside frames, so leave the preview iframe via a new tab.
+    if (window.self !== window.top) {
+      window.open(url, "_blank", "noopener,noreferrer")
+    } else {
+      window.location.assign(url)
+    }
   }
-
-  const results = data?.results ?? []
 
   return (
     <section id="reestr" className="scroll-mt-24 bg-secondary/60">
@@ -38,7 +33,7 @@ export function SntRegistry() {
           <p className="font-mono text-xs uppercase tracking-widest text-primary">Реестр садоводств</p>
           <h2 className="text-balance text-3xl font-semibold tracking-tight md:text-4xl">Найдите своё СНТ</h2>
           <p className="text-pretty leading-relaxed text-muted-foreground">
-            Введите ИНН товарищества и выберите регион — покажем, что о нём находит Яндекс.
+            Введите ИНН товарищества и выберите регион — откроем поиск Яндекса по этому СНТ.
           </p>
         </div>
 
@@ -76,63 +71,14 @@ export function SntRegistry() {
             </label>
             <button
               type="submit"
-              disabled={isLoading}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-primary px-5 font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-primary px-5 font-medium text-primary-foreground transition-opacity hover:opacity-90"
             >
-              {isLoading ? (
-                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-              ) : (
-                <Search className="size-4" aria-hidden="true" />
-              )}
               Найти
+              <ArrowUpRight className="size-4" aria-hidden="true" />
             </button>
           </div>
-          <p className="text-sm text-muted-foreground">ИНН есть в квитанциях и на стенде правления.</p>
+          <p className="text-sm text-muted-foreground">ИНН есть в квитанциях и на стенде правления. Поиск откроется в Яндексе.</p>
         </form>
-
-        <div aria-live="polite" className="sr-only">
-          {isLoading ? "Ищем в Яндексе" : data ? `Найдено: ${results.length}` : ""}
-        </div>
-
-        {error && (
-          <p role="alert" className="rounded-lg border border-destructive/40 bg-card p-4 text-sm text-destructive">
-            {error.message}
-          </p>
-        )}
-
-        {isLoading && (
-          <p className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-            Ищем в Яндексе…
-          </p>
-        )}
-
-        {data && !isLoading && (
-          <div className="flex flex-col gap-3">
-            <p className="text-sm text-muted-foreground">
-              {results.length > 0 ? `Результаты Яндекса: ${results.length}` : "Яндекс ничего не нашёл. Проверьте ИНН и регион."}
-            </p>
-            <ul className="flex flex-col gap-2">
-              {results.map((r) => (
-                <li key={r.url}>
-                  <a
-                    href={r.url}
-                    target="_blank"
-                    rel="noopener noreferrer nofollow"
-                    className="group flex flex-col gap-1.5 rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  >
-                    <span className="flex items-start justify-between gap-3">
-                      <span className="font-medium leading-snug text-primary group-hover:underline">{r.title}</span>
-                      <ArrowUpRight className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
-                    </span>
-                    <span className="truncate font-mono text-xs text-muted-foreground">{r.domain || r.url}</span>
-                    {r.snippet && <span className="text-pretty text-sm leading-relaxed text-muted-foreground">{r.snippet}</span>}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </div>
     </section>
   )
