@@ -26,7 +26,7 @@ const TILES: Tile[] = [
     title: "Ничего не исчезает",
     lead: "Удаление данных убрано полностью — даже для разработчика.",
     tone: "primary",
-    className: "md:col-span-4 md:row-span-2",
+    className: "md:col-span-6 md:flex-row md:items-start md:justify-between md:gap-12",
     features: [
       {
         icon: Archive,
@@ -44,7 +44,7 @@ const TILES: Tile[] = [
     title: "Вход только для своих",
     lead: "Боты и посторонние до документов не доберутся.",
     tone: "card",
-    className: "md:col-span-2",
+    className: "md:col-span-3",
     features: [
       {
         icon: KeyRound,
@@ -62,7 +62,7 @@ const TILES: Tile[] = [
     title: "Отчёт с Алисой — голосом",
     lead: "Меньше бумажной рутины.",
     tone: "stamp",
-    className: "md:col-span-2",
+    className: "md:col-span-3",
     features: [
       {
         icon: Mic,
@@ -134,7 +134,7 @@ export function AboutApp() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-3 md:auto-rows-fr md:grid-cols-6 md:gap-4">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-6 md:gap-4">
           {TILES.map((tile) => {
             const dark = tile.tone !== "card"
             return (
@@ -142,7 +142,7 @@ export function AboutApp() {
                 key={tile.title}
                 className={cn("bento-tile flex flex-col gap-5 rounded-3xl p-6 md:p-8", TONES[tile.tone], tile.className)}
               >
-                <div className="flex flex-col gap-2">
+                <div className={cn("flex flex-col gap-2", tile.tone === "primary" && "md:max-w-sm md:shrink-0")}>
                   <h3
                     className={cn(
                       "text-balance font-semibold tracking-tight",
@@ -155,7 +155,7 @@ export function AboutApp() {
                     {tile.lead}
                   </p>
                 </div>
-                <ul className={cn("flex flex-col gap-4", tile.tone === "primary" && "mt-auto md:grid md:grid-cols-2")}>
+                <ul className={cn("flex flex-col gap-4", tile.tone === "primary" && "md:grid md:flex-1 md:grid-cols-2 md:gap-6")}>
                   {tile.features.map((f) => (
                     <li key={f.title} className="flex gap-3">
                       <span
