@@ -67,7 +67,7 @@ export function SiteFooter() {
                 ))}
               </dl>
             )}
-            <p className="opacity-60">{"© СНТ Онлайн. Данные о товариществах — из открытых государственных источников."}</p>
+            <p className="opacity-60">{"© СНТ Онлайн"}</p>
           </div>
           <a href="/privacy" className="underline underline-offset-4 opacity-80 hover:opacity-100">
             Политика обработки персональных данных
