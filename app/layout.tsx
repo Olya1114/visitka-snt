@@ -9,11 +9,36 @@ const manrope = Manrope({
   variable: '--font-manrope',
 })
 
+const siteTitle = 'СНТ Онлайн — документы, решения и общение садоводства'
+const siteDescription =
+  'Визитка приложения СНТ Онлайн: документы товарищества, архив без удаления, уведомления председателю, ассистент Алиса.'
+const ogImage = {
+  url: '/og-image.jpg',
+  width: 1200,
+  height: 630,
+  alt: 'Садовое товарищество с высоты: участки, домики и дорога среди леса',
+}
+
 export const metadata: Metadata = {
-  title: 'СНТ Онлайн — документы, решения и общение садоводства',
-  description:
-    'Визитка приложения СНТ Онлайн: документы товарищества, архив без удаления, уведомления председателю, ассистент Алиса.',
+  metadataBase: new URL('https://xn--m1ahe.xn--80asehdb'),
+  title: siteTitle,
+  description: siteDescription,
   generator: 'v0.app',
+  openGraph: {
+    type: 'website',
+    locale: 'ru_RU',
+    url: '/',
+    siteName: 'СНТ Онлайн',
+    title: siteTitle,
+    description: siteDescription,
+    images: [ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteTitle,
+    description: siteDescription,
+    images: [ogImage.url],
+  },
   icons: {
     icon: [
       { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' },
